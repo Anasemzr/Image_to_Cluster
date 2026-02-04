@@ -10,7 +10,9 @@ Séquence 1 : Codespace de Github
 Objectif : Création d'un Codespace Github  
 Difficulté : Très facile (~5 minutes)
 -------------------------------------------------------------------------------------------------------
-RDV sur Codespace de Github : <a href="https://github.com/features/codespaces" target="_blank">Codespace</a> **(click droit ouvrir dans un nouvel onglet)** puis créer un nouveau Codespace qui sera connecté à votre Repository API-Driven.
+**Faites un Fork de ce projet**. Si besion, voici une vidéo d'accompagnement pour vous aider dans les "Forks" : [Forker ce projet](https://youtu.be/p33-7XQ29zQ) 
+  
+Depuis l'onglet [CODE] de votre nouveau Repository, **ouvrez un Codespace Github**.
   
 ---------------------------------------------------
 Séquence 2 : Création du cluster Kubernetes K3d
@@ -49,6 +51,36 @@ Votre application Mario est déployée sur le cluster K3d. Pour obtenir votre UR
 Ouvrez l'URL dans votre navigateur et jouer !
 
 ---------------------------------------------------
-Capitalisation
+Séquence 3 : Exercice
 ---------------------------------------------------
-Vous avez apris au travers de cet atelier comment installer Kubernetes dans un environnement Codespace de Github comment déployer une application Docker dans un cluster K3d.
+Objectif : Customisez un image Docker avec Packer et déploiement sur K3d via Ansible
+Difficulté : Moyen/Difficile (~2h30)
+---------------------------------------------------  
+Votre mission (si vous l'acceptez) : Créez une **image applicative customisée à l'aide de Packer** (Image de base Nginx embarquant le fichier index.html de ce Repository), puis déployer cette image customisée sur un **cluster K3d** via **Ansible**, le tout dans un **GitHub Codespace**.  
+
+**Architecture cible :** Ci-dessous, l'architecture cible souhaitée.   
+  
+![Screenshot Actions](Architecture_cible.jpg)   
+  
+---------------------------------------------------  
+## Processus de travail (résumé)
+
+1. Installation du cluster Kubernetes K3d (Séquence 1)
+2. Installation de Packer et Ansible
+3. Build de l'image customisée (Nginx + index.html)
+4. Import de l'image dans K3d
+5. Déploiement du service dans K3d via Ansible
+6. Ouverture des ports et vérification du fonctionnement
+7. Documentation : Complétez ce Readme.
+
+---------------------------------------------------
+Evaluation
+---------------------------------------------------
+Cet atelier, noté sur 20 points, est évalué sur la base du barème suivant :  
+- Repository exécutable sans erreur majeure (4 points)
+- Fonctionnement conforme au scénario annoncé (4 points)
+- Degré d'automatisation du projet (utilisation de Makefile ? script ? ...) (4 points)
+- Qualité du Readme (lisibilité, erreur, ...) (4 points)
+- Processus travail (quantité de commits, cohérence globale, interventions externes, ...) (4 points) 
+
+
