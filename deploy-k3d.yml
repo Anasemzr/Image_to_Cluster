@@ -1,0 +1,12 @@
+- name: Déploiement Nginx sur K3d
+  hosts: localhost
+  tasks:
+    - name: Création du Deployment
+      shell: |
+        kubectl create deployment nginx-custom --image=mon-nginx-custom:v1
+      ignore_errors: yes
+
+    - name: Exposition du Service (NodePort ou ClusterIP)
+      shell: |
+        kubectl expose deployment nginx-custom --port=80 --target-port=80 --type=LoadBalancer
+      ignore_errors: yes
