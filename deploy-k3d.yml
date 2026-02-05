@@ -1,12 +1,15 @@
-- name: Déploiement Nginx sur K3d
+- name: Automatisation complète K3d
   hosts: localhost
   tasks:
-    - name: Création du Deployment
+    - name: Nettoyage des anciens déploiements
+      shell: |
+        kubectl delete deployment nginx-custom --ignore-not-found
+        kubectl delete svc nginx-custom --ignore-not-found
+
+    - name: Création du Deployment avec ton image Packer
       shell: |
         kubectl create deployment nginx-custom --image=mon-nginx-custom:v1
-      ignore_errors: yes
 
-    - name: Exposition du Service (NodePort ou ClusterIP)
+    - name: Exposition du Service sur un port fixe (NodePort)
       shell: |
-        kubectl expose deployment nginx-custom --port=80 --target-port=80 --type=LoadBalancer
-      ignore_errors: yes
+        kubectl expose deployment nginx-custom --port=80 --target-port=80 --type=NodePort --overrides='{"spec": {"ports": [{"nodePort": 30080, "port": 80, "targetPort": 80}]}}'
